@@ -1,3 +1,28 @@
+# the problem
+
+```
+php macro-expand.php "(defmacro plus (a b) (list '+ a b))(defmacro pl (a b) (list 'plus a b))(defmacro p () (list 'pl 1 2) )" "(p)"
+```
+
+yields
+
+```
+gitpod /workspace/ilias/examples $ php macro-expand.php "(defmacro plus (a b) (list '+ a b))(defmacro pl (a b) (list 'plus a b))(defmacro p () (list 'pl 1 2) )" "(p)"PHP Fatal error:  Uncaught TypeError: Igorw\Ilias\Walker::expand(): Argument #2 ($form) must be of type Igorw\Ilias\Form\Form, int given, called in /workspace/ilias/src/Igorw/Ilias/Walker.php on line 88 and defined in /workspace/ilias/src/Igorw/Ilias/Walker.php:11
+Stack trace:
+#0 /workspace/ilias/src/Igorw/Ilias/Walker.php(88): Igorw\Ilias\Walker->expand()
+#1 [internal function]: Igorw\Ilias\Walker->Igorw\Ilias\{closure}()
+#2 /workspace/ilias/src/Igorw/Ilias/Walker.php(90): array_map()
+#3 /workspace/ilias/src/Igorw/Ilias/Walker.php(80): Igorw\Ilias\Walker->expandList()
+#4 /workspace/ilias/src/Igorw/Ilias/Walker.php(22): Igorw\Ilias\Walker->expandSubLists()
+#5 /workspace/ilias/src/Igorw/Ilias/Walker.php(29): Igorw\Ilias\Walker->expand()
+#6 /workspace/ilias/src/Igorw/Ilias/Walker.php(29): Igorw\Ilias\Walker->expand()
+#7 /workspace/ilias/src/Igorw/Ilias/Walker.php(29): Igorw\Ilias\Walker->expand()
+#8 /workspace/ilias/src/Igorw/Ilias/Program.php(28): Igorw\Ilias\Walker->expand()
+#9 /workspace/ilias/examples/macro-expand.php(29): Igorw\Ilias\Program->evaluate()
+#10 {main}
+  thrown in /workspace/ilias/src/Igorw/Ilias/Walker.php on line 11
+```
+
 # Ilias
 
 Naive LISP implementation in PHP. For something more complete, check out
